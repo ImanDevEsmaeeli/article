@@ -33,8 +33,6 @@
             $this->status = $status;
             $this->code = $code;
 
-
-
             return $this->jsonStructure();
         }
 
