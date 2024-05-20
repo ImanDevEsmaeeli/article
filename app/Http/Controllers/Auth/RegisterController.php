@@ -10,7 +10,8 @@ use App\Http\Resources\Auth\RegisterResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Utils\Response\Response;
+//use App\Utils\Response\Response;
+use App\Facades\Response;
 
 class RegisterController extends Controller
 {
@@ -21,8 +22,7 @@ class RegisterController extends Controller
     {
         $user=User::create($request->toArray());
 
-        $response=new Response();
-       return $response->success(
+        return Response::success(
             trans('auth.success'),
             new RegisterResource($user),
             Status::SUCCESS->value,
