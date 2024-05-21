@@ -21,7 +21,6 @@
             $this->status = null;
             $this->message = '';
             $this->code = StatusCode::SUCCESS->value;
-
         }
 
         public function success(string $message, JsonResource|array $data, string $status, int $code): JsonResponse
