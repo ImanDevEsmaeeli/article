@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('bode');
-            $table->enum('status',Status::toArray());
+            $table->enum('status',Status::values());
             $table->foreignId('user_id')
                 ->references('id')
                 ->on('users');
