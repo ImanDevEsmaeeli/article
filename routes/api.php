@@ -5,7 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Article\ArticleController;
+use App\Http\Controllers\Like\LikeController;
 
 Route::post('auth/register',RegisterController::class);
 Route::post('auth/login',LoginController::class);
-Route::apiResource('article',ArticleController::class)->middleware('auth:sanctum');
+Route::group(['middleware' => 'auth:sanctum'],function (){
+    Route::apiResource('article',ArticleController::class);
+    Route::apiResource('like',LikeController::class);
+});
