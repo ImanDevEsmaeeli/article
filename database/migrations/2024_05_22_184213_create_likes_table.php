@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Enums\Article\Status;
 
 return new class extends Migration
 {
@@ -12,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('bode');
-            $table->enum('status',Status::values());
+            $table->boolean('status')->default(false);
             $table->foreignId('user_id')
                 ->references('id')
                 ->on('users');
+            $table->foreignId('article_id')
+                ->references('id')
+                ->on('articles');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('likes');
     }
 };

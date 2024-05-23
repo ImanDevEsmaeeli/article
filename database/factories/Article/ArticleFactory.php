@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Article;
 
+use App\Enums\Article\Status;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title'=>fake()->title(),
+            'body'=>fake()->sentence(),
+            'status'=>fake()->randomElement(Status::values()),
+            'user_id'=>fake()->numberBetween(16,25),
         ];
     }
 }

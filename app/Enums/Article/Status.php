@@ -8,7 +8,7 @@
         case VISIBLE='visible';
         case INVISIBLE='invisible';
 
-        public static function toArray(): array
+        public static function values(): array
         {
             return [
                 self::DRAFT->value,

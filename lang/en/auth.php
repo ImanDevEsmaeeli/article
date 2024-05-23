@@ -16,6 +16,6 @@ return [
     'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'success'=>'User created successfully',
+    'register_success'=>'User created successfully',
     'login_success'=>'successfully Login!'
 ];

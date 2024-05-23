@@ -23,7 +23,7 @@ class RegisterController extends Controller
         $user=User::create($request->toArray());
 
         return Response::success(
-            trans('auth.success'),
+            trans('auth.register_success'),
             new RegisterResource($user),
             Status::SUCCESS->value,
             StatusCode::CREATED->value,
