@@ -20,7 +20,8 @@ class Like extends Model
         'status',
         'user_id',
         'likeable_id',
-        'likeable_type'
+        'likeable_type',
+
     ];
 
     protected static function newFactory(): LikeFactory|Factory
@@ -33,10 +34,11 @@ class Like extends Model
         return $this->belongsTo(User::class);
     }
 
-
     public function likeable(): MorphTo
     {
         return $this->morphTo();
     }
+
+
 
 }

@@ -23,7 +23,8 @@ class LikeRequest extends FormRequest
     {
         return [
             'status'=>'boolean',
-            'likeable_id'=>'int'
+            'likeable_id'=>'required|int',
+            'likeable_type'=>'required|string'
         ];
     }
 }
