@@ -28,7 +28,6 @@ class LikeController extends Controller
         foreach ($likes as $like){
             $arrayLikeResource[] = new LikeResource($like);
         }
-
         return Response::success(
             trans('like.success'),
             $arrayLikeResource,
@@ -45,7 +44,8 @@ class LikeController extends Controller
     {
        $like= Auth::user()->likes()->create([
             'status'=>$request->input('status'),
-            'article_id'=>$request->input('article_id'),
+           'likeable_id'=>$request->input('likeable_id'),
+           'likeable_type'=>$request->input('likeable_type'),
         ]);
 
        return Response::success(
@@ -82,7 +82,8 @@ class LikeController extends Controller
 
         $result= Auth::user()->likes()->whereid($id)->update([
             'status'=>$request->input('status'),
-            'article_id'=>$request->input('article_id'),
+            'likeable_id'=>$request->input('likeable_id'),
+            'likeable_type'=>$request->input('likeable_type'),
         ]);
 
 
