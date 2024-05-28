@@ -19,8 +19,7 @@ class LikeResource extends JsonResource
         return [
             'id'=>$this->id,
             'status'=>$this->status,
-            'article_id'=>$this->article_id,
-            'updated_at'=>$this->updated_at,
+            'likeable_id'=>$this->likeable_id,
         ];
     }
 }

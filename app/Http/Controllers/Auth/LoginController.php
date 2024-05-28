@@ -10,10 +10,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\Auth\LoginResource;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use PHPUnit\Logging\Exception;
 
 class LoginController extends Controller
 {
@@ -24,7 +20,7 @@ class LoginController extends Controller
     {
        $user=User::whereEmail($request->email )->first();
 
-        AuthException::checkLogin($user,$request);
+        AuthException::checkCredentials($user,$request);
 
         $token=$user->createToken('bearerToken')->plainTextToken;
 

@@ -17,9 +17,8 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->references('id')
                 ->on('users');
-            $table->foreignId('article_id')
-                ->references('id')
-                ->on('articles');
+            $table->integer('likeable_id');
+            $table->string('likeable_type');
             $table->timestamps();
         });
     }
