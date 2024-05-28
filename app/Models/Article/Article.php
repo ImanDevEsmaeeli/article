@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Notifications\Notifiable;
 
 class Article extends Model
 {
-    use HasFactory;
+    use HasFactory,Notifiable;
 
     protected $fillable=[
       'title',
@@ -27,9 +29,9 @@ class Article extends Model
 		return $this->belongsTo(User::class);
 	}
 
-    public function likes(): HasMany
+    public function likes(): MorphMany
     {
-        return $this->hasMany(Like::class);
+        return $this->morphMany(Like::class,'likeable');
     }
 
 	protected static function newFactory(): ArticleFactory|Factory

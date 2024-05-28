@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Like extends Model
 {
@@ -18,7 +19,8 @@ class Like extends Model
     protected $fillable=[
         'status',
         'user_id',
-        'article_id'
+        'likeable_id',
+        'likeable_type'
     ];
 
     protected static function newFactory(): LikeFactory|Factory
@@ -31,9 +33,10 @@ class Like extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function article(): BelongsTo
+
+    public function likeable(): MorphTo
     {
-        return $this->belongsTo(Article::class);
+        return $this->morphTo();
     }
 
 }
