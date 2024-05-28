@@ -8,6 +8,7 @@
     use App\Utils\Response\Response as UtilsResponse;
     /**
      * @method static JsonResponse success(string $message, JsonResource|array $data, string $status, int $code)
+     * @method static JsonResponse error(string $message, JsonResource|array $data, string $status, int $code)
      * @see UtilsResponse
      */
     class Response extends BaseFacade
