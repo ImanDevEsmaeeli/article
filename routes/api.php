@@ -11,5 +11,5 @@ Route::post('auth/register',RegisterController::class);
 Route::post('auth/login',LoginController::class);
 Route::group(['middleware' => 'auth:sanctum'],function (){
     Route::apiResource('article',ArticleController::class);
-    Route::apiResource('like',LikeController::class);
+    Route::post('like',LikeController::class);
 });
