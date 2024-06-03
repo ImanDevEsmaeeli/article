@@ -24,7 +24,6 @@ class LikeRequest extends FormRequest
         return [
             'status'=>'boolean',
             'likeable_id'=>'required|int',
-
         ];
     }
 }
