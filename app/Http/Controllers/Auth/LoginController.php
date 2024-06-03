@@ -4,18 +4,20 @@ namespace App\Http\Controllers\Auth;
 
 use App\Enums\Status;
 use App\Enums\StatusCode;
+use App\Exceptions\Auth\AuthException;
 use App\Facades\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-
 use App\Http\Resources\Auth\LoginResource;
 use App\Mail\auth\UserLogin;
 use App\Models\User;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+
 
 class LoginController extends Controller
 {
@@ -25,9 +27,9 @@ class LoginController extends Controller
     public function __invoke(LoginRequest $request)
     {
        $user=User::whereEmail($request->email )->first();
-        if (!$user||!Hash::check($request->password,$user->password)) {
-            //send error
-        }
+
+        AuthException::checkCredentials($user,$request);
+
         $token=$user->createToken('bearerToken')->plainTextToken;
 
         Mail::to($user->email)->send(new  UserLogin([
