@@ -9,7 +9,15 @@ use App\Facades\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\Auth\LoginResource;
+use App\Mail\auth\UserLogin;
 use App\Models\User;
+
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+
 
 class LoginController extends Controller
 {
@@ -23,6 +31,13 @@ class LoginController extends Controller
         AuthException::checkCredentials($user,$request);
 
         $token=$user->createToken('bearerToken')->plainTextToken;
+
+        Mail::to($user->email)->send(new  UserLogin([
+            'userName'=>$user->name,
+            'userEmail'=>$user->email,
+            'userAgent'=>$request->userAgent(),
+            'userIP'=>$request->getClientIp(),
+        ]));
 
         return Response::success(
             trans('auth.login_success'),
