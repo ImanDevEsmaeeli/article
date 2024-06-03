@@ -35,6 +35,18 @@
             return $this->jsonStructure();
         }
 
+        public function error(string $message, JsonResource|array $data, string $status, int $code): JsonResponse
+        {
+            $this->reset();
+
+            $this->message = $message;
+            $this->data = $data;
+            $this->status = $status;
+            $this->code = $code;
+
+            return $this->jsonStructure();
+        }
+
         private function jsonStructure():JsonResponse
         {
             return response()->json([

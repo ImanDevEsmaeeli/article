@@ -14,8 +14,10 @@
     use Illuminate\Support\Facades\Auth;
 
 
+
     class LikeController extends Controller
     {
+
 
         public function __invoke(LikeRequest $request)
         {
@@ -45,6 +47,7 @@
                 StatusCode::SUCCESS->value,
             );
         }
+
 
 
         private function update(HasMany $like_object, LikeRequest $request)
