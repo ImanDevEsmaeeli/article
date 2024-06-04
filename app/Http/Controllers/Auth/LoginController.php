@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Enums\Status;
 use App\Enums\StatusCode;
+
 use App\Exceptions\Auth\AuthException;
+
+use App\Events\Auth\LoginUser;
+
 use App\Facades\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
@@ -32,12 +36,16 @@ class LoginController extends Controller
 
         $token=$user->createToken('bearerToken')->plainTextToken;
 
+
         Mail::to($user->email)->send(new  UserLogin([
             'userName'=>$user->name,
             'userEmail'=>$user->email,
             'userAgent'=>$request->userAgent(),
             'userIP'=>$request->getClientIp(),
         ]));
+
+        LoginUser::dispatch($user);
+
 
         return Response::success(
             trans('auth.login_success'),
