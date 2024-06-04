@@ -4,7 +4,9 @@ namespace App\Models\Article;
 
 use App\Models\Like\Like;
 use App\Models\User;
+use App\Observers\ArticleObserver;
 use Database\Factories\Article\ArticleFactory;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
+#[ObservedBy([ArticleObserver::class])]
 class Article extends Model
 {
     use HasFactory;
