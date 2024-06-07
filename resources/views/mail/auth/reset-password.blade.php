@@ -5,14 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome</title>
+    <title>Document</title>
 </head>
 <body>
 
-    <h1>Welcome to Article galaxy</h1>
-    <br>
-    <p>start your article and no problem</p>
-    <hr>
-    <h4> you are best soon  {{$url}} </h4>
+<p>click link: {{$url}}</p>
+
 </body>
 </html>
+
+

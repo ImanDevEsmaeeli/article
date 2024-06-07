@@ -13,3 +13,5 @@ Route::group(['middleware' => 'auth:sanctum'],function (){
     Route::apiResource('article',ArticleController::class);
     Route::post('like',LikeController::class);
 });
+
+Route::post('resetPassword',\App\Http\Controllers\auth\ForgotPasswordController::class);
