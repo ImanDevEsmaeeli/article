@@ -39,7 +39,7 @@
         public function content(): Content
         {
             return new Content(
-                view: 'mail.user-login',
+                view: 'mail.auth.user-login',
                 with: [
                     'userName' => $this->data['userName'],
                     'userEmail' => $this->data['userEmail'],
