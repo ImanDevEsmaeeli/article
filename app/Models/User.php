@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Passwords\CanResetPassword as CanResetPasswordTrait;
 
@@ -62,9 +63,9 @@ class User extends Authenticatable implements CanResetPassword
         return $this->hasMany(Like::class);
     }
 
-    public function sendPasswordResetNotification($token): void
+    public function sendPasswordResetNotification($token)
     {
         $url='https://example.com/reset-password?token='.$token;
-        $this->notify(new ResetPassword($url));
+        Mail::to($this->email)->send(new ResetPassword($url));
     }
 }

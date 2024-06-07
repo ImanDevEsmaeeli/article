@@ -4,7 +4,7 @@
 
     use App\Http\Controllers\Controller;
 
-    use App\Http\Requests\auth\ResetPasswordRequest;
+    use App\Http\Requests\auth\ForgotPasswordRequest;
     use App\Mail\auth\ResetPassword;
     use App\Models\User;
 
@@ -17,13 +17,11 @@
         /**
          * Handle the incoming request.
          */
-        public function __invoke(ResetPasswordRequest $request)
+        public function __invoke(ForgotPasswordRequest $request)
         {
             $user = User::whereEmail($request->email)->first();
             $token = Password::getRepository()->create($user);
-
-            $result= Mail::to($user->email)->send(new ResetPassword($token));
-            dd($result);
+            $user->sendPasswordResetNotification($token);
 
         }
     }

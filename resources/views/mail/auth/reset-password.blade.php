@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<p>click link: {{$url}}</p>
+<p>click link: <a>{{$url}}</a></p>
 
 </body>
 </html>
