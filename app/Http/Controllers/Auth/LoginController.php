@@ -22,21 +22,10 @@
         public function __invoke(LoginRequest $request)
         {
             $user = User::whereEmail($request->email)->first();
-
             AuthException::checkCredentials($user, $request);
-
             $token = $user->createToken('bearerToken')->plainTextToken;
 
-
-            Mail::to($user->email)->send(new  UserLogin([
-                'userName' => $user->name,
-                'userEmail' => $user->email,
-                'userAgent' => $request->userAgent(),
-                'userIP' => $request->getClientIp(),
-            ]));
-
             LoginUser::dispatch($user);
-
 
             return Response::success(
                 trans('auth.login_success'),
