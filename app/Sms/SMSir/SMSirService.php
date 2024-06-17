@@ -10,6 +10,6 @@
 
         public function send(string $phone, string $text): void
         {
-            Log::info('send sms by SMSir');
+            Log::info("send sms to $phone with message:$text by SMSir");
         }
     }
