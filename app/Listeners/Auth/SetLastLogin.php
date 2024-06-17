@@ -39,7 +39,6 @@ class SetLastLogin
         ]));
 
         $sms=resolve(SmsServiceInterface::class);
-
         $sms->send('09132256497','jkasghdfvgbak');
     }
 }
