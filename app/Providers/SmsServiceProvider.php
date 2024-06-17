@@ -2,6 +2,7 @@
 
     namespace App\Providers;
 
+    use App\Enums\Sms\SmsServices;
     use App\Sms\KavehNegar\KavehNegarService;
     use App\Sms\SaharSms\SaharSmsService;
     use App\Sms\SMSir\SMSirService;
@@ -18,13 +19,13 @@
             $driver = config('sms.driver');
 
             switch ($driver) {
-                case 'KavehNegar':
+                case SmsServices::KAVEH_NEGAR->value :
                     $this->app->singleton(SmsServiceInterface::class, KavehNegarService::class);
                     break;
-                case 'SMSir':
+                case SmsServices::SMS_IR->value:
                     $this->app->singleton(SmsServiceInterface::class, SMSirService::class);
                     break;
-                case 'SaharSms':
+                case SmsServices::SAHAR_SMS->value:
                     $this->app->singleton(SmsServiceInterface::class, SaharSmsService::class);
                     break;
             }
