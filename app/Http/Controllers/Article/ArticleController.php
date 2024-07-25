@@ -12,7 +12,6 @@
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use App\Enums\Article\Status as ArticleStatus;
-    use function MongoDB\BSON\toJSON;
 
     class ArticleController extends Controller
     {
@@ -86,12 +85,7 @@
         public function destroy(string $id)
         {
             $article=Article::destroy($id);
-
-            dd($article);
-            $arr=["success"=>"delete"];
-            return json_encode($arr);
-
-
-
+            return json_encode($article);
         }
+
     }
