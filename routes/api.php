@@ -8,6 +8,7 @@ use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\Like\LikeController;
 use App\Http\Controllers\auth\ForgotPasswordController;
 use App\Http\Controllers\auth\ResetPasswordController;
+use App\Http\Controllers\Auth\LogoutController;
 
 Route::group(['prefix' => 'auth'],function (){
     Route::post('register',RegisterController::class);
@@ -19,7 +20,7 @@ Route::group(['prefix' => 'auth'],function (){
 Route::group(['middleware' => 'auth:sanctum'],function (){
     Route::apiResource('article',ArticleController::class);
     Route::post('like',LikeController::class);
-
+    Route::post('auth/logout',LogoutController::class);
 });
 
 
