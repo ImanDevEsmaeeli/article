@@ -5,6 +5,7 @@ namespace App\Listeners\Auth;
 use App\Events\Auth\LoginUser;
 use App\Mail\auth\UserLogin;
 use App\Models\User;
+use App\Sms\Sms;
 use App\Sms\SmsServiceInterface;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -31,14 +32,13 @@ class SetLastLogin
 			'last_login'=>Carbon::now(),
 		]);
 
-        Mail::to($event->user->email)->send(new  UserLogin([
-            'userName' => $event->user->name,
-            'userEmail' => $event->user->email,
-            'userAgent' => '$request->userAgent()',
-            'userIP' => '$request->getClientIp()',
-        ]));
+//        Mail::to($event->user->email)->send(new  UserLogin([
+//            'userName' => $event->user->name,
+//            'userEmail' => $event->user->email,
+//            'userAgent' => '$request->userAgent()',
+//            'userIP' => '$request->getClientIp()',
+//        ]));
 
-        $sms=resolve(SmsServiceInterface::class);
-        $sms->send('09132256497','jkasghdfvgbak');
+        Sms::send('09132286497','hello');
     }
 }
