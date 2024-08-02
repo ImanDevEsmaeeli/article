@@ -4,5 +4,5 @@
 
 	interface SmsServiceInterface
 	{
-        public function send(string $phone,string $text);
+        public function send(array|string $phone,string $text);
 	}
